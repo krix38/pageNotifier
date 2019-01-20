@@ -13,7 +13,7 @@ def checkRequest(config):
     soup = BeautifulSoup(pageContent, 'html.parser')
 
     element = soup.select(selector)
-    predicatePass = len(list(filter(eval(predicate), element))) > 0
+    predicatePass = any(eval(predicate)(element) for element in elements)
     print(predicatePass) #TODO: run some script defined in config
 
 with open('config.json') as configFile:
