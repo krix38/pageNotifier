@@ -1,9 +1,10 @@
 import json
 import time
 import requests
+import os
 from bs4 import BeautifulSoup
 
-def checkRequest(config):
+def pagePassesPredicate(config):
     uri = config['uri']
     predicate = config['predicate']
     selector = config['selector']
@@ -12,13 +13,13 @@ def checkRequest(config):
     pageContent = request.text
     soup = BeautifulSoup(pageContent, 'html.parser')
 
-    element = soup.select(selector)
-    predicatePass = any(eval(predicate)(element) for element in elements)
-    print(predicatePass) #TODO: run some script defined in config
+    elements = soup.select(selector)
+    return any(eval(predicate)(element) for element in elements)
 
 with open('config.json') as configFile:
     config = json.load(configFile)
 
-while True:
-    checkRequest(config)
+while not pagePassesPredicate(config):
     time.sleep(config['interval'])
+
+os.system(config['executeOnSuccess'])
