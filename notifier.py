@@ -5,11 +5,11 @@ import os
 from bs4 import BeautifulSoup
 
 def pagePassesPredicate(config):
-    uri = config['uri']
+    url = config['url']
     predicate = config['predicate']
     selector = config['selector']
 
-    request = requests.get(uri)
+    request = requests.get(url)
     pageContent = request.text
     soup = BeautifulSoup(pageContent, 'html.parser')
 

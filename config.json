@@ -1,5 +1,5 @@
 {
-	"uri": "http://some-page-to-scrap",
+	"url": "http://some-page-to-scrap",
 	"predicate": "lambda p: p.get('foo', 0) == 'bar'",
 	"selector": "input._someClass[someAttr=4]",
 	"executeOnSuccess": "echo SUCCESS!",
