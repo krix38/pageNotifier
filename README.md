@@ -6,4 +6,4 @@ page change notification script
 
 ## Running
 Edit `config.json`, set url, DOM selector, predicate (as python lambda expression), time interval (in seconds) and command to execute on success.
-Run with `pythhon bot.py`.
+Run with `python notifier.py`.
